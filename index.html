@@ -538,6 +538,10 @@
             position: relative;
         }
 
+        .who-i-help .container {
+            max-width: 1000px;
+        }
+
         .who-i-help::before {
             content: '';
             position: absolute;
@@ -564,20 +568,17 @@
 
         .audience-cards {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
             margin-bottom: 3rem;
-        }
-
-        @media (min-width: 768px) {
-            .audience-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            justify-items: center;
         }
 
         .audience-card {
             background: white;
             padding: 2rem;
+            width: 100%;
+            max-width: 360px;
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
@@ -601,6 +602,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s ease;
+            overflow: hidden;
         }
 
         .audience-card:hover .audience-icon {
@@ -611,6 +613,13 @@
             width: 32px;
             height: 32px;
             fill: white;
+        }
+
+        .audience-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .audience-card h3 {
@@ -1408,6 +1417,10 @@
             background: white;
         }
 
+        .playbook-form .btn {
+            margin-top: 1rem;
+        }
+
         /* ===========================================
            VALUES / PHILOSOPHY
         =========================================== */
@@ -1776,6 +1789,7 @@
             <nav class="main-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#who-i-serve">Who I Serve</a></li>
                     <li><a href="#mission">Mission</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="https://calendly.com/uzoaeke" target="_blank" rel="noopener noreferrer">Consultation</a></li>
@@ -1864,6 +1878,35 @@
                         clarity, protection, and strategies they need to build lasting wealth—so they can
                         focus on what they do best while knowing their family's future is secure."
                     </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================
+             WHO I SERVE
+        ========================================== -->
+        <section class="who-i-help" id="who-i-serve" aria-labelledby="who-i-serve-heading">
+            <div class="container">
+                <h2 id="who-i-serve-heading">Who Do I Serve?</h2>
+                <p class="who-i-help-intro">
+                    I focus on physicians and other busy professionals who want clear, efficient strategies that respect their time while protecting the wealth they work hard to earn.
+                </p>
+                <div class="audience-cards stagger-children">
+                    <article class="audience-card animate-on-scroll">
+                        <div class="audience-icon" aria-hidden="true">
+                            <img src="physicians-icon.jpeg" alt="Physician in hospital smiling with colleagues">
+                        </div>
+                        <h3>Physicians</h3>
+                        <p>Tailored protection, retirement, and tax-aware strategies that fit clinical schedules and long-term career plans.</p>
+                    </article>
+
+                    <article class="audience-card animate-on-scroll">
+                        <div class="audience-icon" aria-hidden="true">
+                            <img src="busy-professionals-icon.jpeg" alt="Smiling professional in workplace setting">
+                        </div>
+                        <h3>Busy Professionals</h3>
+                        <p>Clear, streamlined planning for entrepreneurs, executives, and high-achievers who need decisions made quickly and confidently.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -1973,11 +2016,15 @@
                     <form class="playbook-form" action="#" method="POST">
                         <div class="form-row">
                             <div class="form-group">
+                                <label for="playbook-name">Name *</label>
+                                <input type="text" id="playbook-name" name="name" required autocomplete="name" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
                                 <label for="playbook-email">Email *</label>
                                 <input type="email" id="playbook-email" name="email" required autocomplete="email" placeholder="Enter your email">
                             </div>
-                            <button type="submit" class="btn btn-primary">Download Playbook</button>
                         </div>
+                        <button type="submit" class="btn btn-primary">Download Playbook</button>
                     </form>
                 </div>
             </div>
