@@ -361,107 +361,369 @@
         /* ===========================================
            HERO SECTION - Client-Focused Design
         =========================================== */
+        /* ===========================================
+           HERO - Cinematic Split Screen
+        =========================================== */
         .hero {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-        .hero-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 30%, transparent 60%);
-        }
-
-        .hero-container {
-            position: relative;
-            z-index: 1;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--color-primary-bg);
+        }
+
+        @media (min-width: 900px) {
+            .hero {
+                grid-template-columns: 50% 50%;
+            }
+        }
+
+        /* Left content side */
+        .hero-content-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 40px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (min-width: 900px) {
+            .hero-content-side {
+                padding: 100px 60px 100px 80px;
+            }
+        }
+
+        /* Decorative vertical line */
+        .hero-vertical-line {
+            position: absolute;
+            left: 30px;
+            top: 120px;
+            bottom: 120px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--color-accent), transparent);
+            display: none;
+        }
+
+        @media (min-width: 900px) {
+            .hero-vertical-line {
+                display: block;
+            }
+        }
+
+        /* Brand label */
+        .hero-brand {
+            display: inline-flex;
             align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
         }
 
-        .hero-content {
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto;
+        .hero-brand-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero h1 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
-            color: white;
-            line-height: 1.2;
-            animation: fadeInUp 0.8s ease forwards;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-        }
-
-        .hero-tagline {
+        .hero-brand-icon span {
+            font-family: var(--font-heading);
             font-size: 1rem;
-            color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-            opacity: 0;
-            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            color: var(--color-accent);
         }
 
+        .hero-brand-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+
+        /* Main headline */
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            color: var(--color-light-neutral);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .hero-highlight {
+            display: block;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        /* Tagline */
+        .hero-tagline {
+            font-size: 1.05rem;
+            color: var(--color-light-neutral);
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+        }
+
+        /* CTA buttons */
         .hero-cta-group {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
+            margin-bottom: 3rem;
         }
 
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-outline:hover {
-            background: white;
+        .hero .btn-primary {
+            background: var(--color-accent);
             color: var(--color-primary-bg);
+            padding: 1rem 2rem;
+            font-weight: 600;
+        }
+
+        .hero .btn-primary:hover {
+            background: var(--color-light-neutral);
+            transform: translateY(-2px);
+        }
+
+        .hero .btn-outline {
+            background: transparent;
+            color: var(--color-light-neutral);
+            border: 2px solid rgba(218, 215, 205, 0.3);
+            padding: 0.9rem 2rem;
+        }
+
+        .hero .btn-outline:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        /* Stats row */
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(205, 158, 102, 0.2);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.7rem;
+            color: var(--color-light-neutral);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 5px;
+        }
+
+        /* Right image side */
+        .hero-image-side {
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 900px) {
+            .hero-image-side {
+                min-height: 100vh;
+            }
+        }
+
+        .hero-image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* Diagonal overlay */
+        .hero-image-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100px;
+            bottom: 0;
+            width: 100px;
+            background: var(--color-primary-bg);
+            transform: skewX(-3deg);
+            z-index: 2;
+            display: none;
+        }
+
+        @media (min-width: 900px) {
+            .hero-image-side::before {
+                display: block;
+            }
+        }
+
+        /* Floating card on image */
+        .hero-floating-card {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            background: white;
+            padding: 20px 25px;
+            max-width: 280px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+
+        @media (min-width: 900px) {
+            .hero-floating-card {
+                left: -30px;
+                bottom: 80px;
+            }
+        }
+
+        .hero-floating-card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .hero-floating-card-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .hero-floating-card h4 {
+            font-size: 1rem;
+            color: var(--color-primary-bg);
+            margin-bottom: 5px;
+        }
+
+        .hero-floating-card p {
+            font-size: 0.85rem;
+            color: var(--color-secondary-bg);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        @media (min-width: 900px) {
+            .hero-scroll {
+                left: 40px;
+                transform: none;
+            }
+        }
+
+        .hero-scroll-text {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            writing-mode: vertical-rl;
+            display: none;
+        }
+
+        @media (min-width: 900px) {
+            .hero-scroll-text {
+                display: block;
+            }
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--color-accent), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--color-light-neutral);
+            animation: scrollDown 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-20px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(60px); opacity: 0; }
+        }
+
+        /* Hero animations */
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero .hero-brand {
+            animation: heroFadeIn 0.8s ease 0.2s both;
+        }
+
+        .hero h1 {
+            animation: heroFadeUp 0.8s ease 0.4s both;
+        }
+
+        .hero .hero-tagline {
+            animation: heroFadeUp 0.8s ease 0.6s both;
+        }
+
+        .hero .hero-cta-group {
+            animation: heroFadeUp 0.8s ease 0.8s both;
+        }
+
+        .hero .hero-stats {
+            animation: heroFadeUp 0.8s ease 1s both;
+        }
+
+        .hero .hero-floating-card {
+            animation: heroFadeUp 0.8s ease 1.2s both;
         }
 
         .btn-large {
             padding: 1.25rem 3rem;
             font-size: 1.1rem;
         }
-
-        @media (min-width: 768px) {
-            .hero-content {
-                text-align: left;
-                margin: 0;
-                max-width: 550px;
-            }
-            .hero-cta-group {
-                justify-content: flex-start;
-            }
             .hero-overlay {
                 background: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.5) 35%, transparent 55%);
             }
@@ -549,38 +811,221 @@
         /* ===========================================
            WHO I HELP SECTION
         =========================================== */
+        /* ===========================================
+           WHO I SERVE - Split Screen Slider
+        =========================================== */
+        .who-i-serve {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 80vh;
+            background: var(--color-primary-bg);
+        }
+
+        @media (min-width: 900px) {
+            .who-i-serve {
+                grid-template-columns: 40% 60%;
+            }
+        }
+
+        /* Left side - Fixed content */
+        .who-i-serve-left {
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--color-primary-bg);
+            position: relative;
+        }
+
+        @media (min-width: 900px) {
+            .who-i-serve-left {
+                padding: 80px 60px;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+            }
+        }
+
+        .who-i-serve-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .who-i-serve-label-line {
+            width: 40px;
+            height: 2px;
+            background: var(--color-accent);
+        }
+
+        .who-i-serve-label-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+
+        .who-i-serve h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--color-light-neutral);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .who-i-serve h2 span {
+            color: var(--color-accent);
+        }
+
+        .who-i-serve-intro {
+            font-size: 1rem;
+            color: var(--color-light-neutral);
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Slider navigation dots */
+        .who-i-serve-dots {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 2rem;
+        }
+
+        .who-i-serve-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(205, 158, 102, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .who-i-serve-dot.active {
+            background: var(--color-accent);
+        }
+
+        .who-i-serve-dot.active::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px solid var(--color-accent);
+            border-radius: 50%;
+        }
+
+        /* Right side - Slider */
+        .who-i-serve-right {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        @media (min-width: 900px) {
+            .who-i-serve-right {
+                min-height: 100vh;
+            }
+        }
+
+        .who-i-serve-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: scale(1.05);
+        }
+
+        .who-i-serve-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+
+        .who-i-serve-slide-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .who-i-serve-slide-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Dark gradient overlay */
+        .who-i-serve-slide-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(58, 57, 50, 0.85) 0%,
+                rgba(58, 57, 50, 0.6) 50%,
+                rgba(58, 57, 50, 0.4) 100%
+            );
+        }
+
+        .who-i-serve-slide-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+        }
+
+        @media (min-width: 900px) {
+            .who-i-serve-slide-content {
+                padding: 60px;
+            }
+        }
+
+        .who-i-serve-slide-number {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            font-weight: 200;
+            color: var(--color-accent);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .who-i-serve-slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .who-i-serve-slide p {
+            font-size: 1rem;
+            color: var(--color-light-neutral);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        /* Progress bar */
+        .who-i-serve-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--color-accent);
+            width: 0;
+            z-index: 10;
+            transition: width 0.1s linear;
+        }
+
+        /* Legacy styles for backward compatibility */
         .who-i-help {
             background: var(--color-light-neutral);
             color: var(--color-primary-bg);
             position: relative;
-        }
-
-        .who-i-help .container {
-            max-width: 1000px;
-        }
-
-        .who-i-help::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to bottom, var(--color-primary-bg), transparent);
-            opacity: 0.05;
-        }
-
-        .who-i-help h2 {
-            color: var(--color-secondary-bg);
-            text-align: center;
-        }
-
-        .who-i-help-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.125rem;
-            color: var(--color-secondary-bg);
         }
 
         .audience-cards {
@@ -600,12 +1045,6 @@
             text-align: center;
             box-shadow: var(--shadow-md);
             transition: var(--transition-base);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .audience-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-xl);
         }
 
         .audience-icon {
@@ -617,12 +1056,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease;
             overflow: hidden;
-        }
-
-        .audience-card:hover .audience-icon {
-            transform: scale(1.1);
         }
 
         .audience-icon svg {
@@ -751,16 +1185,270 @@
         /* ===========================================
            ABOUT / MY STORY SECTION
         =========================================== */
+        /* ===========================================
+           ABOUT - Immersive Magazine Layout
+        =========================================== */
         .about {
-            background: var(--color-primary-bg);
+            background: #f5f4f0;
             position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+        }
+
+        @media (min-width: 900px) {
+            .about-wrapper {
+                grid-template-columns: 45% 55%;
+            }
+        }
+
+        /* Left side - Image */
+        .about-image-side {
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 900px) {
+            .about-image-side {
+                min-height: 100vh;
+                position: sticky;
+                top: 0;
+            }
+        }
+
+        .about-image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        /* Decorative frame overlay */
+        .about-frame {
+            position: absolute;
+            inset: 30px;
+            border: 1px solid rgba(205, 158, 102, 0.4);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .about-frame::before,
+        .about-frame::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--color-accent);
+        }
+
+        .about-frame::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .about-frame::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Floating name badge on image */
+        .about-name-badge {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            background: var(--color-primary-bg);
+            padding: 20px 30px;
+            z-index: 3;
+        }
+
+        .about-name-badge h3 {
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .about-name-badge p {
+            color: var(--color-light-neutral);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        @media (max-width: 899px) {
+            .about-name-badge {
+                bottom: 20px;
+                left: 20px;
+                padding: 15px 20px;
+            }
+        }
+
+        /* Right side - Content */
+        .about-content-side {
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f5f4f0;
+        }
+
+        @media (min-width: 900px) {
+            .about-content-side {
+                padding: 80px 60px 80px 80px;
+            }
+        }
+
+        /* Section label */
+        .about-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-label-line {
+            width: 40px;
+            height: 2px;
+            background: var(--color-accent);
+        }
+
+        .about-label-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent);
         }
 
         .about h2 {
-            text-align: center;
-            margin-bottom: 3rem;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--color-primary-bg);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
+        .about h2 span {
+            color: var(--color-accent);
+        }
+
+        .about-story {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--color-secondary-bg);
+            margin-bottom: 2.5rem;
+        }
+
+        .about-story p {
+            margin-bottom: 1.25rem;
+        }
+
+        /* Credentials row */
+        .about-credentials {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(58, 57, 50, 0.15);
+            border-bottom: 1px solid rgba(58, 57, 50, 0.15);
+            margin-bottom: 2.5rem;
+        }
+
+        .about-credential {
+            text-align: center;
+        }
+
+        .about-credential-value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .about-credential-label {
+            font-size: 0.7rem;
+            color: var(--color-secondary-bg);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 5px;
+        }
+
+        /* What I Focus On - Card grid */
+        .about-focus {
+            margin-top: 1rem;
+        }
+
+        .about-focus h4 {
+            color: var(--color-accent);
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-focus-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 600px) {
+            .about-focus-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-focus-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid var(--color-accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .about-focus-item:hover {
+            background: var(--color-primary-bg);
+            transform: translateX(5px);
+        }
+
+        .about-focus-item:hover span {
+            color: var(--color-light-neutral);
+        }
+
+        .about-focus-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: var(--color-accent);
+        }
+
+        .about-focus-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .about-focus-item span {
+            font-size: 0.9rem;
+            color: var(--color-secondary-bg);
+            transition: color 0.3s ease;
+        }
+
+        /* Legacy styles for backward compatibility */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -781,24 +1469,10 @@
             position: relative;
         }
 
-        .about-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            border: 1px solid rgba(205, 158, 102, 0.2);
-            pointer-events: none;
-        }
-
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
-            transition: var(--transition-slow);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.02);
         }
 
         .about-container {
@@ -1119,6 +1793,149 @@
             border-radius: 50%;
         }
 
+        /* Service Tabs */
+        .service-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .service-tab {
+            background: transparent;
+            border: 1px solid rgba(205, 158, 102, 0.3);
+            color: var(--color-light-neutral);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+
+        .service-tab:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .service-tab.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: var(--color-primary-bg);
+        }
+
+        /* Service Panels */
+        .service-panels {
+            position: relative;
+            min-height: 400px;
+        }
+
+        .service-panel {
+            display: none;
+            background: var(--color-secondary-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(205, 158, 102, 0.15);
+        }
+
+        .service-panel.active {
+            display: block;
+            animation: fadeInPanel 0.4s ease;
+        }
+
+        @keyframes fadeInPanel {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-panel-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(205, 158, 102, 0.2);
+        }
+
+        .service-panel-header h3 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-tagline {
+            font-size: 1.1rem;
+            color: var(--color-light-neutral);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .service-panel-content p {
+            color: var(--color-light-neutral);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .service-list {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+
+        .service-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-light-neutral);
+            line-height: 1.7;
+        }
+
+        .service-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 8px;
+            height: 8px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .service-note {
+            background: rgba(205, 158, 102, 0.1);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--color-accent);
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        .service-subsection {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(205, 158, 102, 0.15);
+        }
+
+        .service-subsection h4 {
+            color: var(--color-accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-panel {
+                padding: 1.5rem;
+            }
+
+            .service-tabs {
+                gap: 0.5rem;
+            }
+
+            .service-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
         /* ===========================================
            HOW I WORK
         =========================================== */
@@ -1358,47 +2175,201 @@
         /* ===========================================
            MISSION STATEMENT
         =========================================== */
+        /* ===========================================
+           MISSION - Cinematic Statement Design
+        =========================================== */
         .mission {
-            background: var(--color-light-neutral);
-            text-align: center;
-            padding: 5rem 1.5rem;
-        }
-
-        .mission h2 {
-            color: var(--color-secondary-bg);
-            margin-bottom: 2rem;
-        }
-
-        .mission-content {
-            border: 2px solid var(--color-primary-bg);
-            border-radius: 12px;
-            padding: 3rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .mission-content blockquote {
-            font-family: var(--font-heading);
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            font-style: italic;
-            color: var(--color-primary-bg);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
+            background: var(--color-primary-bg);
             position: relative;
-            padding: 1rem 2rem;
+            padding: 8rem 2rem;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
         }
 
-        .mission-content blockquote::before {
+        /* Giant decorative quote mark */
+        .mission::before {
             content: '"';
-            font-size: 4rem;
-            color: var(--color-accent);
             position: absolute;
-            top: -1rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Georgia, serif;
+            font-size: clamp(300px, 50vw, 600px);
+            color: rgba(205, 158, 102, 0.04);
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Decorative lines */
+        .mission::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--color-accent));
+        }
+
+        .mission-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Section label */
+        .mission-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .mission-label-line {
+            width: 50px;
+            height: 1px;
+            background: var(--color-accent);
+        }
+
+        .mission-label-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+
+        /* Main quote */
+        .mission-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: var(--color-light-neutral);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .mission-quote .highlight {
+            color: var(--color-accent);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .mission-quote .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 0;
-            opacity: 0.5;
+            width: 100%;
+            height: 2px;
+            background: var(--color-accent);
+            opacity: 0.3;
+        }
+
+        /* Author signature */
+        .mission-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-author-line {
+            width: 60px;
+            height: 1px;
+            background: var(--color-accent);
+            margin-bottom: 5px;
+        }
+
+        .mission-author-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            letter-spacing: 0.05em;
+        }
+
+        .mission-author-title {
+            font-size: 0.8rem;
+            color: var(--color-light-neutral);
+            opacity: 0.7;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Decorative corner elements */
+        .mission-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(205, 158, 102, 0.2);
+            z-index: 0;
+        }
+
+        .mission-corner.top-left {
+            top: 40px;
+            left: 40px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .mission-corner.top-right {
+            top: 40px;
+            right: 40px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .mission-corner.bottom-left {
+            bottom: 40px;
+            left: 40px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .mission-corner.bottom-right {
+            bottom: 40px;
+            right: 40px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @media (max-width: 768px) {
+            .mission {
+                padding: 5rem 1.5rem;
+                min-height: auto;
+            }
+
+            .mission-corner {
+                width: 40px;
+                height: 40px;
+            }
+
+            .mission-corner.top-left,
+            .mission-corner.bottom-left {
+                left: 20px;
+            }
+
+            .mission-corner.top-right,
+            .mission-corner.bottom-right {
+                right: 20px;
+            }
+
+            .mission-corner.top-left,
+            .mission-corner.top-right {
+                top: 20px;
+            }
+
+            .mission-corner.bottom-left,
+            .mission-corner.bottom-right {
+                bottom: 20px;
+            }
         }
 
         /* ===========================================
@@ -1849,25 +2820,57 @@
              HERO SECTION - Client-Focused
         ========================================== -->
         <section class="hero" aria-labelledby="hero-heading">
-            <!-- Background image of professionals -->
-            <div class="hero-background">
-                <img src="hero-lifestyle.jpg"
-                     alt="Professional financial consultation - advisor helping client with financial planning"
-                     loading="eager">
-            </div>
-            <div class="hero-overlay"></div>
+            <!-- Left Content Side -->
+            <div class="hero-content-side">
+                <div class="hero-vertical-line"></div>
 
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <h1 id="hero-heading">Financial Planning for Physicians & Busy Professionals</h1>
-                    <p class="hero-tagline">
-                        Building Financial Clarity, Confidence, and Long-Term Security for You and Your Family
-                    </p>
-                    <div class="hero-cta-group">
-                        <a href="https://calendly.com/uzoaeke" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Schedule a Call</a>
-                        <a href="#services" class="btn btn-outline">Explore Services</a>
+                <!-- Brand identifier -->
+                <div class="hero-brand">
+                    <div class="hero-brand-icon">
+                        <span>FG</span>
+                    </div>
+                    <span class="hero-brand-text">FG Lake Financial</span>
+                </div>
+
+                <!-- Main headline -->
+                <h1 id="hero-heading">
+                    Financial Planning for
+                    <span class="hero-highlight">Physicians & Professionals</span>
+                </h1>
+
+                <!-- Tagline -->
+                <p class="hero-tagline">
+                    Building financial clarity, confidence, and long-term security for you and your family through personalized strategies that work as hard as you do.
+                </p>
+
+                <!-- CTA buttons -->
+                <div class="hero-cta-group">
+                    <a href="https://calendly.com/uzoaeke" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Schedule a Consultation</a>
+                    <a href="#services" class="btn btn-outline">Explore Services</a>
+                </div>
+
+                <!-- Stats -->
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">20+</div>
+                        <div class="hero-stat-label">Years Experience</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">MD</div>
+                        <div class="hero-stat-label">Medical Doctor</div>
                     </div>
                 </div>
+
+                <!-- Scroll indicator -->
+                <div class="hero-scroll">
+                    <span class="hero-scroll-text">Scroll</span>
+                    <div class="hero-scroll-line"></div>
+                </div>
+            </div>
+
+            <!-- Right Image Side -->
+            <div class="hero-image-side">
+                <img src="hero-lifestyle.jpg" alt="Professional financial consultation" loading="eager">
             </div>
         </section>
 
@@ -1875,29 +2878,81 @@
              ABOUT SECTION
         ========================================== -->
         <section class="about" id="about" aria-labelledby="about-heading">
-            <div class="container">
-                <h2 id="about-heading">About Me</h2>
-                <div class="about-grid">
-                    <div class="about-image animate-on-scroll">
-                        <img src="headshot.jpg" alt="Uzoamaka Eke, MD - Financial Professional">
+            <div class="about-wrapper">
+                <!-- Left side - Image -->
+                <div class="about-image-side">
+                    <img src="headshot.jpg" alt="Uzoamaka Eke, MD - Financial Professional">
+                    <div class="about-frame"></div>
+                    <div class="about-name-badge">
+                        <h3>Uzoamaka Eke, MD</h3>
+                        <p>Physician & Financial Professional</p>
                     </div>
-                    <div class="about-content animate-on-scroll">
-                        <h3>Physician & Financial Professional</h3>
+                </div>
+
+                <!-- Right side - Content -->
+                <div class="about-content-side">
+                    <div class="about-label">
+                        <span class="about-label-line"></span>
+                        <span class="about-label-text">My Story</span>
+                    </div>
+
+                    <h2 id="about-heading">From Medicine to <span>Financial Mastery</span></h2>
+
+                    <div class="about-story">
                         <p>
-                            With over 20 years as a practicing physician, I understand the demands, risks, and high-stakes decisions busy professionals face while building wealth. The long hours, the delayed gratification, and building wealth while managing a demanding career. My experience as a real estate investor sharpened my focus on cash flow, liquidity, and navigating market cycles. Today, as a financial wellness professional, I bring these perspectives together to serve busy professionals in their wealth building journey.
+                            With over 20 years as a practicing physician, I understand the demands, risks, and high-stakes decisions busy professionals face while building wealth. The long hours, the delayed gratification, and building wealth while managing a demanding career. My experience as a real estate investor sharpened my focus on cash flow, liquidity, and navigating market cycles.
                         </p>
                         <p>
-                            My goal is to support your financial wellness through protection-oriented strategies that work alongside growth assets, helping add resilience, flexibility, and long-term efficiency to your overall financial strategy. When aligned properly with your life stage, goals, and risk tolerance, protection can serve as a foundation that allows growth to work more efficiently, especially through uncertainty. This is not to replace what you may already be doing well, but to complement it.
+                            Today, as a financial wellness professional, I bring these perspectives together to serve busy professionals in their wealth building journey—adding resilience, flexibility, and long-term efficiency to your overall financial strategy.
                         </p>
-                        <div class="about-highlight">
-                            <h4>What I Focus On</h4>
-                            <ul>
-                                <li>Long-term growth with risk management</li>
-                                <li>Access to liquidity, even during market downturns</li>
-                                <li>Tax-efficient strategies for high earners</li>
-                                <li>Living benefits (long-term care, critical illness, income protection)</li>
-                                <li>Legacy and estate planning support for busy families</li>
-                            </ul>
+                    </div>
+
+                    <!-- Credentials -->
+                    <div class="about-credentials">
+                        <div class="about-credential">
+                            <div class="about-credential-value">20+</div>
+                            <div class="about-credential-label">Years Experience</div>
+                        </div>
+                        <div class="about-credential">
+                            <div class="about-credential-value">MD</div>
+                            <div class="about-credential-label">Medical Degree</div>
+                        </div>
+                    </div>
+
+                    <!-- What I Focus On -->
+                    <div class="about-focus">
+                        <h4>What I Focus On</h4>
+                        <div class="about-focus-grid">
+                            <div class="about-focus-item">
+                                <div class="about-focus-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+                                </div>
+                                <span>Long-term growth with risk management</span>
+                            </div>
+                            <div class="about-focus-item">
+                                <div class="about-focus-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                </div>
+                                <span>Access to liquidity, even during downturns</span>
+                            </div>
+                            <div class="about-focus-item">
+                                <div class="about-focus-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                </div>
+                                <span>Tax-efficient strategies for high earners</span>
+                            </div>
+                            <div class="about-focus-item">
+                                <div class="about-focus-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </div>
+                                <span>Living benefits & income protection</span>
+                            </div>
+                            <div class="about-focus-item">
+                                <div class="about-focus-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                </div>
+                                <span>Legacy and estate planning</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1908,14 +2963,30 @@
              MISSION STATEMENT
         ========================================== -->
         <section class="mission" id="mission" aria-labelledby="mission-heading">
-            <div class="container">
-                <h2 id="mission-heading">My Mission</h2>
-                <div class="mission-content animate-on-scroll">
-                    <blockquote>
-                        "To empower physicians, business owners, and busy professionals with the financial
-                        clarity, protection, and strategies they need to build lasting wealth—so they can
-                        focus on what they do best while knowing their family's future is secure."
-                    </blockquote>
+            <!-- Decorative corners -->
+            <div class="mission-corner top-left"></div>
+            <div class="mission-corner top-right"></div>
+            <div class="mission-corner bottom-left"></div>
+            <div class="mission-corner bottom-right"></div>
+
+            <div class="mission-inner">
+                <!-- Section label -->
+                <div class="mission-label">
+                    <span class="mission-label-line"></span>
+                    <span class="mission-label-text">My Mission</span>
+                    <span class="mission-label-line"></span>
+                </div>
+
+                <!-- Main quote -->
+                <h2 id="mission-heading" class="mission-quote">
+                    To empower <span class="highlight">physicians</span>, <span class="highlight">business owners</span>, and <span class="highlight">busy professionals</span> with the financial clarity, protection, and strategies they need to build <span class="highlight">lasting wealth</span>—so they can focus on what they do best while knowing their family's future is <span class="highlight">secure</span>.
+                </h2>
+
+                <!-- Author signature -->
+                <div class="mission-author">
+                    <div class="mission-author-line"></div>
+                    <div class="mission-author-name">Uzoamaka Eke, MD</div>
+                    <div class="mission-author-title">Physician & Financial Professional</div>
                 </div>
             </div>
         </section>
@@ -1923,34 +2994,68 @@
         <!-- =========================================
              WHO I SERVE
         ========================================== -->
-        <section class="who-i-help" id="who-i-serve" aria-labelledby="who-i-serve-heading">
-            <div class="container">
-                <h2 id="who-i-serve-heading">Who I Serve</h2>
-                <div class="audience-cards stagger-children">
-                    <article class="audience-card animate-on-scroll">
-                        <div class="audience-icon" aria-hidden="true">
-                            <img src="physicians-icon.jpeg" alt="Physician in hospital smiling with colleagues">
-                        </div>
-                        <h3>Physicians and Other Busy Professionals</h3>
-                        <p>Tailored protection, retirement, and tax-saving strategies that protect other assets without sacrificing growth and liquidity.</p>
-                    </article>
-
-                    <article class="audience-card animate-on-scroll">
-                        <div class="audience-icon" aria-hidden="true">
-                            <img src="busy-professionals-icon.jpeg" alt="Business professional in office setting">
-                        </div>
-                        <h3>Business Owners</h3>
-                        <p>Clear, streamlined strategies for entrepreneurs and executives that makes for business longevity, funding, access to liquidity, asset protection, tax savings and legacy transfer.</p>
-                    </article>
-
-                    <article class="audience-card animate-on-scroll">
-                        <div class="audience-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                        </div>
-                        <h3>Families</h3>
-                        <p>Strategies for life insurance, to protect and preserve wealth, fund projects, children education and multigenerational wealth.</p>
-                    </article>
+        <section class="who-i-serve" id="who-i-serve" aria-labelledby="who-i-serve-heading">
+            <!-- Left Side - Fixed Content -->
+            <div class="who-i-serve-left">
+                <div class="who-i-serve-label">
+                    <span class="who-i-serve-label-line"></span>
+                    <span class="who-i-serve-label-text">Who I Serve</span>
                 </div>
+
+                <h2 id="who-i-serve-heading">I Partner With<br><span>Those Who Value</span><br>Strategic Thinking</h2>
+
+                <p class="who-i-serve-intro">
+                    Whether you're building wealth, protecting it, or planning your legacy—I help individuals and families who want their finances to work as hard as they do.
+                </p>
+
+                <!-- Navigation Dots -->
+                <div class="who-i-serve-dots">
+                    <button class="who-i-serve-dot active" data-slide="0" aria-label="View Physicians slide"></button>
+                    <button class="who-i-serve-dot" data-slide="1" aria-label="View Business Owners slide"></button>
+                    <button class="who-i-serve-dot" data-slide="2" aria-label="View Families slide"></button>
+                </div>
+            </div>
+
+            <!-- Right Side - Sliding Content -->
+            <div class="who-i-serve-right">
+                <!-- Slide 1: Physicians -->
+                <div class="who-i-serve-slide active" data-slide="0">
+                    <div class="who-i-serve-slide-bg">
+                        <img src="physicians-icon.jpeg" alt="Physicians and healthcare professionals">
+                    </div>
+                    <div class="who-i-serve-slide-content">
+                        <div class="who-i-serve-slide-number">01</div>
+                        <h3>Physicians & Busy Professionals</h3>
+                        <p>Tailored protection, retirement, and tax-saving strategies designed for demanding schedules. Solutions that protect your assets without sacrificing growth and liquidity.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Business Owners -->
+                <div class="who-i-serve-slide" data-slide="1">
+                    <div class="who-i-serve-slide-bg">
+                        <img src="busy-professionals-icon.jpeg" alt="Business owners and entrepreneurs">
+                    </div>
+                    <div class="who-i-serve-slide-content">
+                        <div class="who-i-serve-slide-number">02</div>
+                        <h3>Business Owners</h3>
+                        <p>Clear, streamlined strategies for entrepreneurs and executives. Supporting business longevity, funding, liquidity access, asset protection, tax savings, and legacy transfer.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Families -->
+                <div class="who-i-serve-slide" data-slide="2">
+                    <div class="who-i-serve-slide-bg">
+                        <img src="services-family.png" alt="Families planning for the future">
+                    </div>
+                    <div class="who-i-serve-slide-content">
+                        <div class="who-i-serve-slide-number">03</div>
+                        <h3>Families</h3>
+                        <p>Strategies for life insurance to protect and preserve wealth, fund projects, children's education, and build multigenerational wealth that lasts.</p>
+                    </div>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="who-i-serve-progress"></div>
             </div>
         </section>
 
@@ -1961,27 +3066,118 @@
             <div class="container">
                 <h2 id="services-heading">Services Provided</h2>
                 <p class="services-intro">Let's get you started on the path to financial security.</p>
-                <div class="services-grid stagger-children">
-                    <article class="service-card animate-on-scroll">
-                        <h3>Life Insurance</h3>
-                        <p>Individual and business solutions, term and permanent policies, business succession strategies.</p>
-                    </article>
 
-                    <article class="service-card animate-on-scroll">
-                        <h3>Retirement Planning</h3>
-                        <p>Custom retirement roadmaps, annuity strategies, and income security planning.</p>
-                    </article>
-
-                    <article class="service-card animate-on-scroll">
-                        <h3>Cash Balance & Pension Plans</h3>
-                        <p>Tax-efficient solutions designed to maximize your retirement savings.</p>
-                    </article>
-
-                    <article class="service-card animate-on-scroll">
-                        <h3>Legacy & Estate Planning</h3>
-                        <p>Protect and preserve family wealth for generations to come.</p>
-                    </article>
+                <!-- Service Tabs Navigation -->
+                <div class="service-tabs">
+                    <button class="service-tab active" data-tab="life-insurance">Life Insurance</button>
+                    <button class="service-tab" data-tab="retirement">Retirement Planning</button>
+                    <button class="service-tab" data-tab="cash-balance">Cash Balance Plans</button>
+                    <button class="service-tab" data-tab="legacy">Legacy Planning</button>
                 </div>
+
+                <!-- Service Panels -->
+                <div class="service-panels">
+                    <!-- Life Insurance Panel -->
+                    <div class="service-panel active" id="life-insurance">
+                        <div class="service-panel-header">
+                            <h3>Life Insurance</h3>
+                            <p class="service-tagline">Protection that works while you're living and leaves a legacy when you're not</p>
+                        </div>
+                        <div class="service-panel-content">
+                            <p>Life insurance is more than a death benefit. When structured intentionally, it becomes a cornerstone of financial security, liquidity, and long-term planning and supplemental retirement income for individuals and business owners.</p>
+                            <p>We design individual and business solutions that align with your income, family responsibilities, and stage of life including:</p>
+                            <ul class="service-list">
+                                <li>Term insurance for cost-effective protection during peak earning and family-raising years</li>
+                                <li>Permanent insurance for long-term protection, cash value growth, and living benefits, tax benefits, liquidity and flexibility, even when markets are down</li>
+                                <li>Business succession and key-person strategies to protect companies from unexpected loss</li>
+                                <li>Executive bonus and retention plans that reward and retain top talent in a tax-efficient way</li>
+                                <li>Final expense solutions</li>
+                            </ul>
+                            <p class="service-note">Our approach focuses on protection first, while maintaining flexibility, growth and tax advantages so your coverage adapts as your life and business evolve.</p>
+                        </div>
+                    </div>
+
+                    <!-- Retirement Planning Panel -->
+                    <div class="service-panel" id="retirement">
+                        <div class="service-panel-header">
+                            <h3>Retirement Planning & Annuities</h3>
+                            <p class="service-tagline">Custom Roadmaps for Growth and Income Security</p>
+                        </div>
+                        <div class="service-panel-content">
+                            <p>Retirement planning isn't about guessing, it's about building a clear, adaptable roadmap that balances growth, protection, and predictable income. We help busy professionals and families transition from accumulation to confidence.</p>
+                            <p>This includes:</p>
+                            <ul class="service-list">
+                                <li>Personalized retirement income strategies aligned with your timeline and lifestyle goals</li>
+                                <li>Strategies that complement, not replace your existing 401(k), 403(b), 457, TSP, or investment accounts</li>
+                                <li>Annuities designed for growth, protection, or guaranteed income, depending on your needs</li>
+                                <li>Personalized supplementary retirement plans using permanent life insurance to safeguard traditional retirement accounts</li>
+                            </ul>
+                            <p class="service-note">Our focus is on helping you retire on purpose, with safeguards against market volatility, longevity risk, and unexpected life events.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cash Balance Panel -->
+                    <div class="service-panel" id="cash-balance">
+                        <div class="service-panel-header">
+                            <h3>Cash Balance & Pension Plans</h3>
+                            <p class="service-tagline">Advanced tax strategies for high earners and business owners</p>
+                        </div>
+                        <div class="service-panel-content">
+                            <p>For professionals and business owners looking to accelerate retirement savings while managing taxes, cash balance and pension plans can be powerful tools.</p>
+                            <p>These plans are designed to:</p>
+                            <ul class="service-list">
+                                <li>Allow significantly higher tax-advantaged contributions than traditional retirement accounts</li>
+                                <li>Markedly reduce taxable income, leading to huge savings on taxes</li>
+                                <li>Create predictable retirement benefits</li>
+                                <li>Support both individual professionals and growing businesses</li>
+                            </ul>
+                            <p>We help evaluate whether these strategies align with your cash flow, business structure, and long-term goals, ensuring the plan enhances flexibility rather than creating future constraints.</p>
+                            <p class="service-note">These plans are not one-size-fits-all. We coordinate closely with your CPA and advisors to ensure each strategy is compliant, sustainable, and aligned with your goals.</p>
+                        </div>
+                    </div>
+
+                    <!-- Legacy Planning Panel -->
+                    <div class="service-panel" id="legacy">
+                        <div class="service-panel-header">
+                            <h3>Family Estate, Business Succession & Legacy Planning</h3>
+                            <p class="service-tagline">Protect What You've Built. Preserve What Matters.</p>
+                        </div>
+                        <div class="service-panel-content">
+                            <p>Your life's work deserves a thoughtful transition, not uncertainty. Whether you're planning to sell, pass on, or gradually exit your business, we help you protect both enterprise value and family wealth.</p>
+                            <p>Estate and legacy planning is not just about documents; it's about protecting people, preserving values, and ensuring the life you've built continues to serve those you care about most.</p>
+                            <p>Our legal partners provide an educational complimentary consultation that helps you understand:</p>
+                            <ul class="service-list">
+                                <li>How your family, assets, and business interests are currently exposed</li>
+                                <li>What happens to your income, business, and responsibilities in the event of incapacity or death</li>
+                                <li>How to transition wealth and ownership intentionally, rather than by default</li>
+                            </ul>
+
+                            <div class="service-subsection">
+                                <h4>For Families</h4>
+                                <p>We help families align estate strategies with real life:</p>
+                                <ul class="service-list">
+                                    <li>Protecting minor children and dependents</li>
+                                    <li>Ensuring access to liquidity when it matters most</li>
+                                    <li>Reducing stress, confusion, and financial burden during difficult times</li>
+                                </ul>
+                            </div>
+
+                            <div class="service-subsection">
+                                <h4>For Business Owners</h4>
+                                <p>We support business owners with:</p>
+                                <ul class="service-list">
+                                    <li>Succession and continuity planning</li>
+                                    <li>Funding strategies to protect partners, employees, and family members</li>
+                                    <li>Preserving enterprise value while creating a smooth transition of ownership</li>
+                                    <li>Coordination with trusted professionals to align financial, legal, and family considerations</li>
+                                </ul>
+                            </div>
+
+                            <p class="service-note">Our goal is simple: to protect the people you love, the business you've built, and the legacy you intend to leave. Because legacy isn't accidental; it's planned, protected, and passed forward with purpose.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="services-cta">
                     <a href="https://calendly.com/uzoaeke" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Let's Get Started</a>
                 </div>
@@ -2134,6 +3330,97 @@
                 menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
+
+        // Service tabs functionality
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        const servicePanels = document.querySelectorAll('.service-panel');
+
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetPanel = tab.getAttribute('data-tab');
+
+                // Remove active class from all tabs and panels
+                serviceTabs.forEach(t => t.classList.remove('active'));
+                servicePanels.forEach(p => p.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding panel
+                tab.classList.add('active');
+                document.getElementById(targetPanel).classList.add('active');
+            });
+        });
+
+        // Who I Serve slider functionality
+        const whoServeSlides = document.querySelectorAll('.who-i-serve-slide');
+        const whoServeDots = document.querySelectorAll('.who-i-serve-dot');
+        const whoServeProgress = document.querySelector('.who-i-serve-progress');
+        let currentSlide = 0;
+        let slideInterval;
+        const slideDuration = 5000; // 5 seconds per slide
+        let progressStart;
+
+        function goToSlide(index) {
+            // Remove active class from all
+            whoServeSlides.forEach(slide => slide.classList.remove('active'));
+            whoServeDots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to current
+            whoServeSlides[index].classList.add('active');
+            whoServeDots[index].classList.add('active');
+            currentSlide = index;
+
+            // Reset progress bar
+            resetProgress();
+        }
+
+        function nextSlide() {
+            const next = (currentSlide + 1) % whoServeSlides.length;
+            goToSlide(next);
+        }
+
+        function resetProgress() {
+            if (whoServeProgress) {
+                whoServeProgress.style.transition = 'none';
+                whoServeProgress.style.width = '0%';
+                // Force reflow
+                whoServeProgress.offsetHeight;
+                whoServeProgress.style.transition = `width ${slideDuration}ms linear`;
+                whoServeProgress.style.width = '100%';
+            }
+        }
+
+        function startSlider() {
+            resetProgress();
+            slideInterval = setInterval(nextSlide, slideDuration);
+        }
+
+        function stopSlider() {
+            clearInterval(slideInterval);
+            if (whoServeProgress) {
+                whoServeProgress.style.transition = 'none';
+                whoServeProgress.style.width = '0%';
+            }
+        }
+
+        // Dot click handlers
+        whoServeDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopSlider();
+                goToSlide(index);
+                startSlider();
+            });
+        });
+
+        // Start the slider if elements exist
+        if (whoServeSlides.length > 0) {
+            startSlider();
+
+            // Pause on hover
+            const whoServeSection = document.querySelector('.who-i-serve');
+            if (whoServeSection) {
+                whoServeSection.addEventListener('mouseenter', stopSlider);
+                whoServeSection.addEventListener('mouseleave', startSlider);
+            }
+        }
     </script>
 </body>
 </html>
