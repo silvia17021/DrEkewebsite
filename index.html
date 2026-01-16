@@ -817,7 +817,7 @@
         .who-i-serve {
             display: grid;
             grid-template-columns: 1fr;
-            min-height: 40vh;
+            min-height: 55vh;
             background: #f5f4f0;
         }
 
@@ -829,7 +829,7 @@
 
         /* Left side - Fixed content */
         .who-i-serve-left {
-            padding: 28px 20px;
+            padding: 40px 28px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -839,28 +839,28 @@
 
         @media (min-width: 900px) {
             .who-i-serve-left {
-                padding: 35px 30px;
+                padding: 50px 42px;
                 position: sticky;
                 top: 0;
-                height: 50vh;
+                height: 65vh;
             }
         }
 
         .who-i-serve-label {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 0.6rem;
+            gap: 8px;
+            margin-bottom: 0.8rem;
         }
 
         .who-i-serve-label-line {
-            width: 20px;
+            width: 28px;
             height: 2px;
             background: var(--color-accent);
         }
 
         .who-i-serve-label-text {
-            font-size: 0.5rem;
+            font-size: 0.65rem;
             font-weight: 600;
             letter-spacing: 0.25em;
             text-transform: uppercase;
@@ -868,10 +868,10 @@
         }
 
         .who-i-serve h2 {
-            font-size: clamp(1.8rem, 4.5vw, 2.75rem);
+            font-size: clamp(2.1rem, 5vw, 3.2rem);
             color: var(--color-primary-bg);
             line-height: 1.15;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .who-i-serve h2 span {
@@ -880,24 +880,24 @@
         }
 
         .who-i-serve-intro {
-            font-size: 1rem;
+            font-size: 1.15rem;
             color: var(--color-secondary-bg);
             opacity: 0.9;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
         }
 
         /* Slider navigation dots */
         .who-i-serve-dots {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             margin-top: auto;
-            padding-top: 1rem;
+            padding-top: 1.25rem;
         }
 
         .who-i-serve-dot {
-            width: 7px;
-            height: 7px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(104, 90, 75, 0.25);
             border: none;
@@ -913,7 +913,7 @@
         .who-i-serve-dot.active::after {
             content: '';
             position: absolute;
-            inset: -3px;
+            inset: -4px;
             border: 1px solid var(--color-secondary-bg);
             border-radius: 50%;
         }
@@ -922,12 +922,12 @@
         .who-i-serve-right {
             position: relative;
             overflow: hidden;
-            min-height: 280px;
+            min-height: 380px;
         }
 
         @media (min-width: 900px) {
             .who-i-serve-right {
-                min-height: 50vh;
+                min-height: 65vh;
             }
         }
 
@@ -958,6 +958,11 @@
             object-position: center;
         }
 
+        /* Slide 3 (Families) - move image up to show faces better */
+        .who-i-serve-slide[data-slide="2"] .who-i-serve-slide-bg img {
+            object-position: center 25%;
+        }
+
         /* Dark gradient overlay */
         .who-i-serve-slide-bg::after {
             content: '';
@@ -978,36 +983,36 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 18px;
+            padding: 28px;
         }
 
         @media (min-width: 900px) {
             .who-i-serve-slide-content {
-                padding: 28px;
+                padding: 42px;
             }
         }
 
         .who-i-serve-slide-number {
             font-family: var(--font-heading);
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 200;
             color: #CD9E66;
             opacity: 0.85;
             line-height: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .who-i-serve-slide h3 {
-            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+            font-size: clamp(1.15rem, 2.2vw, 1.5rem);
             color: white;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
 
         .who-i-serve-slide p {
-            font-size: 0.75rem;
+            font-size: 0.95rem;
             color: var(--color-light-neutral);
-            line-height: 1.6;
-            max-width: 350px;
+            line-height: 1.7;
+            max-width: 420px;
         }
 
         /* Progress bar */
