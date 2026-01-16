@@ -2619,6 +2619,84 @@
         }
 
         /* ===========================================
+           MISSION SECTION ANIMATIONS
+        =========================================== */
+        /* Mission elements - initial hidden state */
+        .mission-element {
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Corner animations - slide in from their corners */
+        .mission-corner.mission-element {
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .mission-corner.top-left.mission-element {
+            transform: translate(-30px, -30px);
+        }
+
+        .mission-corner.top-right.mission-element {
+            transform: translate(30px, -30px);
+        }
+
+        .mission-corner.bottom-left.mission-element {
+            transform: translate(-30px, 30px);
+        }
+
+        .mission-corner.bottom-right.mission-element {
+            transform: translate(30px, 30px);
+        }
+
+        /* Label - fade down */
+        .mission-label.mission-element {
+            transform: translateY(-30px);
+        }
+
+        /* Quote - fade up with scale */
+        .mission-quote.mission-element {
+            transform: translateY(50px) scale(0.95);
+            transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Author - fade up */
+        .mission-author.mission-element {
+            transform: translateY(40px);
+        }
+
+        /* Animated state */
+        .mission-element.mission-visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* Staggered delays */
+        .mission-corner.mission-element { transition-delay: 0s; }
+        .mission-label.mission-element { transition-delay: 0.3s; }
+        .mission-quote.mission-element { transition-delay: 0.5s; }
+        .mission-author.mission-element { transition-delay: 0.9s; }
+
+        /* Highlight words animate with underline */
+        .mission-quote .highlight {
+            background-size: 0% 2px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(var(--color-accent), var(--color-accent));
+            transition: background-size 0.6s ease;
+        }
+
+        .mission-visible .highlight {
+            background-size: 100% 2px;
+        }
+
+        /* Staggered highlight animations */
+        .mission-quote.mission-visible .highlight:nth-of-type(1) { transition-delay: 0.8s; }
+        .mission-quote.mission-visible .highlight:nth-of-type(2) { transition-delay: 1.0s; }
+        .mission-quote.mission-visible .highlight:nth-of-type(3) { transition-delay: 1.2s; }
+        .mission-quote.mission-visible .highlight:nth-of-type(4) { transition-delay: 1.4s; }
+        .mission-quote.mission-visible .highlight:nth-of-type(5) { transition-delay: 1.6s; }
+
+        /* ===========================================
            PLAYBOOK DOWNLOAD
         =========================================== */
         .playbook {
@@ -3625,32 +3703,76 @@
         }
 
         /* ===========================================
-           ANIMATIONS - Text Effects
+           ANIMATIONS - Hero Section Slide In
         =========================================== */
 
-        .hero h1 {
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 0.2s;
+        /* Hero content side - slides from left */
+        .hero-content-side {
             opacity: 0;
+            transform: translateX(-120px);
+            transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .hero .hero-subtitle {
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 0.4s;
-            opacity: 0;
+        .hero-content-side.hero-animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        .hero .hero-cta-group {
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 0.6s;
+        /* Hero image side - slides from right */
+        .hero-image-side {
             opacity: 0;
+            transform: translateX(120px);
+            transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .hero-stats {
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 0.8s;
-            opacity: 0;
+        .hero-image-side.hero-animate {
+            opacity: 1;
+            transform: translateX(0);
         }
+
+        /* Hero elements - staggered scroll animations */
+        .hero-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Vertical line animates differently - grows from top */
+        .hero-vertical-line.hero-element {
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Hero image scales up */
+        .hero-image-side .hero-element {
+            transform: scale(1.1);
+            transition: opacity 1.2s ease, transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Animated state for hero elements */
+        .hero-element.hero-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .hero-vertical-line.hero-element.hero-visible {
+            transform: scaleY(1);
+        }
+
+        .hero-image-side .hero-element.hero-visible {
+            transform: scale(1);
+        }
+
+        /* Staggered delays based on data-hero-delay attribute */
+        .hero-element[data-hero-delay="0"] { transition-delay: 0s; }
+        .hero-element[data-hero-delay="1"] { transition-delay: 0.15s; }
+        .hero-element[data-hero-delay="2"] { transition-delay: 0.3s; }
+        .hero-element[data-hero-delay="3"] { transition-delay: 0.45s; }
+        .hero-element[data-hero-delay="4"] { transition-delay: 0.6s; }
+        .hero-element[data-hero-delay="5"] { transition-delay: 0.75s; }
+        .hero-element[data-hero-delay="6"] { transition-delay: 0.9s; }
+        .hero-element[data-hero-delay="7"] { transition-delay: 1.05s; }
 
         /* Underline animation for links */
         .nav-links a {
@@ -3874,10 +3996,10 @@
         <section class="hero" aria-labelledby="hero-heading">
             <!-- Left Content Side -->
             <div class="hero-content-side">
-                <div class="hero-vertical-line"></div>
+                <div class="hero-vertical-line hero-element" data-hero-delay="0"></div>
 
                 <!-- Brand identifier -->
-                <div class="hero-brand">
+                <div class="hero-brand hero-element" data-hero-delay="1">
                     <div class="hero-brand-icon">
                         <span>FG</span>
                     </div>
@@ -3885,36 +4007,36 @@
                 </div>
 
                 <!-- Main headline -->
-                <h1 id="hero-heading">
+                <h1 id="hero-heading" class="hero-element" data-hero-delay="2">
                     Strategic Insurance Solutions
                     <span class="hero-highlight">That Work While You Live</span>
                 </h1>
 
                 <!-- Tagline -->
-                <p class="hero-tagline">
+                <p class="hero-tagline hero-element" data-hero-delay="3">
                     Personalized planning focused on protection, growth, and legacy—using insurance as the cornerstone of your financial future.
                 </p>
 
                 <!-- CTA buttons -->
-                <div class="hero-cta-group">
+                <div class="hero-cta-group hero-element" data-hero-delay="4">
                     <a href="https://calendly.com/uzoaeke" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Schedule a Consultation</a>
                     <a href="#services" class="btn btn-outline">Explore Services</a>
                 </div>
 
                 <!-- Stats -->
                 <div class="hero-stats">
-                    <div class="hero-stat">
+                    <div class="hero-stat hero-element" data-hero-delay="5">
                         <div class="hero-stat-value">20+</div>
                         <div class="hero-stat-label">Years Experience</div>
                     </div>
-                    <div class="hero-stat">
+                    <div class="hero-stat hero-element" data-hero-delay="6">
                         <div class="hero-stat-value">MD</div>
                         <div class="hero-stat-label">Medical Doctor</div>
                     </div>
                 </div>
 
                 <!-- Scroll indicator -->
-                <div class="hero-scroll">
+                <div class="hero-scroll hero-element" data-hero-delay="7">
                     <span class="hero-scroll-text">Scroll</span>
                     <div class="hero-scroll-line"></div>
                 </div>
@@ -3922,7 +4044,7 @@
 
             <!-- Right Image Side -->
             <div class="hero-image-side">
-                <img src="hero-lifestyle.jpg" alt="Professional financial consultation" loading="eager">
+                <img src="hero-consultation.jpg" alt="Professional financial consultation meeting" loading="eager" class="hero-element" data-hero-delay="2">
             </div>
         </section>
 
@@ -4016,26 +4138,26 @@
         ========================================== -->
         <section class="mission" id="mission" aria-labelledby="mission-heading">
             <!-- Decorative corners -->
-            <div class="mission-corner top-left"></div>
-            <div class="mission-corner top-right"></div>
-            <div class="mission-corner bottom-left"></div>
-            <div class="mission-corner bottom-right"></div>
+            <div class="mission-corner top-left mission-element"></div>
+            <div class="mission-corner top-right mission-element"></div>
+            <div class="mission-corner bottom-left mission-element"></div>
+            <div class="mission-corner bottom-right mission-element"></div>
 
             <div class="mission-inner">
                 <!-- Section label -->
-                <div class="mission-label">
+                <div class="mission-label mission-element">
                     <span class="mission-label-line"></span>
                     <span class="mission-label-text">My Mission</span>
                     <span class="mission-label-line"></span>
                 </div>
 
                 <!-- Main quote -->
-                <h2 id="mission-heading" class="mission-quote">
+                <h2 id="mission-heading" class="mission-quote mission-element">
                     To empower <span class="highlight">physicians</span>, <span class="highlight">business owners</span>, and <span class="highlight">busy professionals</span> with the financial clarity, protection, and strategies they need to build <span class="highlight">lasting wealth</span>—so they can focus on what they do best while knowing their family's future is <span class="highlight">secure</span>.
                 </h2>
 
                 <!-- Author signature -->
-                <div class="mission-author">
+                <div class="mission-author mission-element">
                     <div class="mission-author-line"></div>
                     <div class="mission-author-name">Uzoamaka Eke, MD</div>
                     <div class="mission-author-title">Physician & Financial Professional</div>
@@ -4745,7 +4867,7 @@
 
         // Intersection Observer for scroll animations
         const createScrollObserver = () => {
-            const observer = new IntersectionObserver((entries) => {
+            animationObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
@@ -4759,7 +4881,7 @@
 
             // Observe all elements with data-animate
             document.querySelectorAll('[data-animate]').forEach(el => {
-                observer.observe(el);
+                animationObserver.observe(el);
             });
         };
 
@@ -4848,6 +4970,10 @@
                     const target = document.querySelector(href);
                     if (target) {
                         e.preventDefault();
+
+                        // Reset animations for target section so they can play again
+                        resetSectionAnimations(target);
+
                         const headerOffset = 80;
                         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
@@ -4865,6 +4991,82 @@
                 });
             });
         };
+
+        // Reset animations for a section so they can trigger again
+        const resetSectionAnimations = (section) => {
+            // Reset data-animate elements within the section
+            section.querySelectorAll('[data-animate].animated').forEach(el => {
+                el.classList.remove('animated');
+            });
+
+            // Reset Hero section animations
+            if (section.classList.contains('hero')) {
+                const heroContent = section.querySelector('.hero-content-side');
+                const heroImage = section.querySelector('.hero-image-side');
+                const heroElements = section.querySelectorAll('.hero-element');
+
+                if (heroContent) heroContent.classList.remove('hero-animate');
+                if (heroImage) heroImage.classList.remove('hero-animate');
+                heroElements.forEach(el => el.classList.remove('hero-visible'));
+
+                // Trigger hero animation after scroll starts
+                setTimeout(() => {
+                    triggerHeroAnimation();
+                    // Also animate hero elements
+                    heroElements.forEach(el => el.classList.add('hero-visible'));
+                }, 800);
+            }
+
+            // Reset About section slide-in animations
+            if (section.classList.contains('about')) {
+                const aboutImage = section.querySelector('.about-image-side');
+                const aboutContent = section.querySelector('.about-content-side');
+                if (aboutImage) aboutImage.classList.remove('slide-in');
+                if (aboutContent) aboutContent.classList.remove('slide-in');
+
+                // Re-setup the About observer
+                setupAboutSlideIn();
+            }
+
+            // Reset Mission section animations
+            if (section.classList.contains('mission')) {
+                const missionElements = section.querySelectorAll('.mission-element');
+                missionElements.forEach(el => el.classList.remove('mission-visible'));
+
+                // Trigger mission animation after scroll starts
+                setTimeout(() => {
+                    missionElements.forEach(el => el.classList.add('mission-visible'));
+                }, 800);
+            }
+
+            // Reset Services section animations
+            if (section.classList.contains('services-section')) {
+                section.querySelectorAll('.services-image, .services-content-side').forEach(el => {
+                    el.classList.remove('animated');
+                    if (el.hasAttribute('data-animate')) {
+                        animationObserver.observe(el);
+                    }
+                });
+            }
+
+            // Re-observe elements after a brief delay
+            setTimeout(() => {
+                section.querySelectorAll('[data-animate]:not(.animated)').forEach(el => {
+                    animationObserver.observe(el);
+                });
+            }, 100);
+        };
+
+        // Trigger hero section animation
+        const triggerHeroAnimation = () => {
+            const heroContent = document.querySelector('.hero-content-side');
+            const heroImage = document.querySelector('.hero-image-side');
+            if (heroContent) heroContent.classList.add('hero-animate');
+            if (heroImage) heroImage.classList.add('hero-animate');
+        };
+
+        // Store observer reference globally for reuse
+        let animationObserver;
 
         // About section slide-in animation
         const setupAboutSlideIn = () => {
@@ -4893,6 +5095,78 @@
             aboutObserver.observe(aboutSection);
         };
 
+        // Hero section scroll-triggered animation
+        let heroObserver;
+        const setupHeroSlideIn = () => {
+            const heroSection = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content-side');
+            const heroImage = document.querySelector('.hero-image-side');
+            const heroElements = document.querySelectorAll('.hero-element');
+
+            if (!heroSection || !heroContent || !heroImage) return;
+
+            heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add hero-animate class to trigger the slide-in animation
+                        heroContent.classList.add('hero-animate');
+                        heroImage.classList.add('hero-animate');
+
+                        // Animate all hero elements with staggered delays
+                        heroElements.forEach(el => {
+                            el.classList.add('hero-visible');
+                        });
+                    } else {
+                        // Remove animation class when scrolling away so it can replay
+                        heroContent.classList.remove('hero-animate');
+                        heroImage.classList.remove('hero-animate');
+
+                        // Reset hero elements
+                        heroElements.forEach(el => {
+                            el.classList.remove('hero-visible');
+                        });
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -100px 0px',
+                threshold: 0.2
+            });
+
+            heroObserver.observe(heroSection);
+        };
+
+        // Mission section scroll-triggered animation
+        let missionObserver;
+        const setupMissionSlideIn = () => {
+            const missionSection = document.querySelector('.mission');
+            const missionElements = document.querySelectorAll('.mission-element');
+
+            if (!missionSection || missionElements.length === 0) return;
+
+            missionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate all mission elements with staggered delays
+                        missionElements.forEach(el => {
+                            el.classList.add('mission-visible');
+                        });
+                    } else {
+                        // Reset mission elements when scrolling away
+                        missionElements.forEach(el => {
+                            el.classList.remove('mission-visible');
+                        });
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -100px 0px',
+                threshold: 0.2
+            });
+
+            missionObserver.observe(missionSection);
+        };
+
         // Initialize all animations
         document.addEventListener('DOMContentLoaded', () => {
             createScrollProgress();
@@ -4900,6 +5174,8 @@
             setupHeaderScroll();
             setupSmoothScroll();
             setupAboutSlideIn();
+            setupHeroSlideIn();
+            setupMissionSlideIn();
 
             // Small delay to ensure DOM is ready, then start observing
             requestAnimationFrame(() => {
@@ -4913,6 +5189,7 @@
                         el.classList.add('animated');
                     }
                 });
+
             });
         });
     </script>
