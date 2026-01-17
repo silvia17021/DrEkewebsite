@@ -1739,6 +1739,63 @@
             }
         }
 
+        /* Services Slideshow */
+        .services-slideshow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .services-slideshow .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .services-slideshow .slide.active {
+            opacity: 1;
+        }
+
+        .services-slideshow .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slideshow-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .slideshow-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .slideshow-dot.active {
+            background: var(--color-gold);
+            transform: scale(1.2);
+        }
+
         /* Content Side */
         .services-content-side {
             padding: 1.8rem 1.2rem;
@@ -4239,9 +4296,28 @@
         <section class="services-section" id="services" aria-labelledby="services-heading">
             <div class="container">
                 <div class="services-split">
-                    <!-- Family Photo Side -->
+                    <!-- Family Photo Slideshow -->
                     <div class="services-image">
-                        <img src="family-services.png" alt="Happy family planning their financial future together" loading="lazy">
+                        <div class="services-slideshow" id="services-slideshow">
+                            <div class="slide active">
+                                <img src="family-services.png" alt="Happy family planning their financial future together" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="services-family.png" alt="Family enjoying quality time together" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="family-autumn.jpg" alt="Multi-generational family embracing in autumn park" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="family-living-room.jpg" alt="Family relaxing together at home" loading="lazy">
+                            </div>
+                            <div class="slideshow-dots">
+                                <button class="slideshow-dot active" data-slide="0" aria-label="Slide 1"></button>
+                                <button class="slideshow-dot" data-slide="1" aria-label="Slide 2"></button>
+                                <button class="slideshow-dot" data-slide="2" aria-label="Slide 3"></button>
+                                <button class="slideshow-dot" data-slide="3" aria-label="Slide 4"></button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Content Side -->
@@ -4377,7 +4453,7 @@
                             <p>Fill out the form below and I'll get back to you within 24 hours.</p>
                         </div>
 
-                        <form class="consultation-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <form class="consultation-form" action="https://formspree.io/f/xqeeenjo" method="POST">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="consult-name">Full Name *</label>
@@ -5192,6 +5268,63 @@
 
             });
         });
+
+        // Services Slideshow
+        (function() {
+            const slideshow = document.getElementById('services-slideshow');
+            if (!slideshow) return;
+
+            const slides = slideshow.querySelectorAll('.slide');
+            const dots = slideshow.querySelectorAll('.slideshow-dot');
+            let currentSlide = 0;
+            let autoplayInterval;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                const next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }
+
+            // Dot click handlers
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                    resetAutoplay();
+                });
+            });
+
+            // Autoplay
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, 4000);
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayInterval);
+                startAutoplay();
+            }
+
+            // Start autoplay when slideshow is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startAutoplay();
+                    } else {
+                        clearInterval(autoplayInterval);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(slideshow);
+        })();
     </script>
 </body>
 </html>
